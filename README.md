@@ -22,10 +22,22 @@ Criteria 2: When the user inputs values that associate with a corresponding tria
 Criteria 3: When sides are a right triangle it labels the triangle as the corresponding triangle. (Ex (3,4,5) == "Right Scalene").
 
 Part 4
-There has been AI use in this project Claude helped explain the assigment better, Copilot suggested most of the code and if there was any problems i corrected them. 
+There has been AI use in this project Claude helped explain the assigment better, Copilot suggested most of the code and if there was any problems i corrected them. Claude also helped out when i was having trouble uploading to github. 
 How to Run the Tests
 1. Install dependencies: `python -m pip install -r requirements.txt`
 2. Run all tests: `python -m pytest -v`
 
-Equivalence classes are groups of inputs the code treats the same way. Any one example from a group should behave like all the others. That’s the list of six.
-Boundaries are the edges between groups where bugs usually hide side exactly 0 the degenerate 1 + 2 = 3 case and float rounding on right triangles.
+## Equivalence Classes and Boundaries
+
+Equivalence classes:
+1. Invalid: any side <= 0
+2. Invalid: triangle inequality fails (two sides sum to less than the third)
+3. Equilateral: all sides equal
+4. Isosceles: exactly two sides equal
+5. Scalene: all sides different
+6. Right triangles: Right Isosceles or Right Scalene (a² + b² = c² within a tolerance)
+
+Boundaries:
+1. Side exactly 0 (invalid) vs. just above 0
+2. Degenerate case: two sides sum exactly to the third, such as (1, 2, 3), which is invalid
+3. Non-integer right triangles such as (1, 1, √2), where float rounding means == fails and a tolerance is needed
